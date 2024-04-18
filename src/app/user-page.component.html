@@ -1,0 +1,71 @@
+<h1>With Nullable User</h1>
+<h2>Example 1</h2>
+@if (nullableUserStore.user()) {
+  <p>
+    Waza {{ nullableUserStore.user()?.firstName }}
+    {{ nullableUserStore.user()?.lastName }}? Welcome to the HOF at:
+  </p>
+  <address>{{ nullableUserStore.user()?.address?.place }}</address>
+} @else {
+  <p>Loading...</p>
+}
+
+<h2>Example 2</h2>
+<p>
+  Waza
+  @if (
+    nullableUserStore.user()?.firstName && nullableUserStore.user()?.lastName
+  ) {
+    <span
+      >{{ nullableUserStore.user()?.firstName }}
+      {{ nullableUserStore.user()?.lastName }}</span
+    >
+  } @else {
+    <span>Loading...</span>
+  }
+  ? Welcome to the HOF at:
+</p>
+@if (nullableUserStore.user()?.address?.place) {
+  <address>{{ nullableUserStore.user()?.address?.place }}</address>
+} @else {
+  <span>Loading...</span>
+}
+
+<hr />
+
+<h1>With Initial State</h1>
+<h2>Example 1</h2>
+@if (nonNullableUserStore.user.id() > 0) {
+  <p>
+    Hello, {{ nonNullableUserStore.user.firstName() }}
+    {{ nonNullableUserStore.user.lastName() }}. Welcome to the HOF at:
+  </p>
+  <address>{{ nonNullableUserStore.user.address.place() }}</address>
+} @else {
+  <span>Loading...</span>
+}
+
+<h2>Example 2</h2>
+<p>
+  Hello,
+  @if (
+    nonNullableUserStore.user.firstName() &&
+    nonNullableUserStore.user.lastName()
+  ) {
+    <span>
+      {{ nonNullableUserStore.user.firstName() }}
+      {{ nonNullableUserStore.user.lastName() }}
+    </span>
+  } @else {
+    <span>Loading...</span>
+  }
+  Welcome to the HOF at:
+</p>
+@if (nonNullableUserStore.user.address.place()) {
+  <address>{{ nonNullableUserStore.user.address.place() }}</address>
+} @else {
+  <span>Loading...</span>
+}
+
+<h1>User State Service</h1>
+<address>{{ userStateService.addressPlace() }}</address>
